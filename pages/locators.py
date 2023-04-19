@@ -15,3 +15,8 @@ class ProductPageLocators:
     BOOK_NAME = (By.XPATH, '//div[@class="col-sm-6 product_main"]/h1')
     PRICE_OF_BOOK = (By.XPATH, '//div[@class="col-sm-6 product_main"]/p')
     PRICE_IN_BASKET = (By.XPATH, '//div[@class="alertinner "]/p/strong')
+
+class BasketPageLocators:
+    BASKET_PAGE = (By.CSS_SELECTOR, 'span a.btn.btn-default')
+    EMPTY_TEXT = (By.CSS_SELECTOR, 'div#content_inner p:nth-child(1)')
+    ITEMS_ABSENT = (By.CSS_SELECTOR, 'div.basket-items')
