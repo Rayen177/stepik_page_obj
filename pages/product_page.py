@@ -12,9 +12,9 @@ class ProductPage(BasePage):
         price_of_book = self.browser.find_element(*ProductPageLocators.PRICE_OF_BOOK)
         price_in_basket = self.browser.find_element(*ProductPageLocators.PRICE_IN_BASKET)
 
-        assert price_of_book.text == price_in_basket.text
-        assert book.text == book_name
-        assert 'added to your basket' in added.text
+        assert price_of_book.text == price_in_basket.text, 'The price of book doesn\'t match with price of basket'
+        assert book.text == book_name, 'The name of book doesn\'t match with book in basket'
+        assert 'added to your basket' in added.text, 'The book doesn\'t added to basket'
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_ADDED_TEXT), "Success message is presented, but should not be"

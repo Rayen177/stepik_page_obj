@@ -1,23 +1,27 @@
 from .pages.login_page import LoginPage
 from .pages.basket_page import BasketPage
 from .pages.main_page import MainPage
+import pytest
 
 
-def test_guest_can_go_to_login_page(browser):
-    link = "http://selenium1py.pythonanywhere.com/"
-    page = MainPage(browser, link)
-    page.open()
-    page.go_to_loging_page()
+@pytest.mark.login_guest
+class TestLoginFromMainPage:
+    # не забываем передать первым аргументом self
+    def test_guest_can_go_to_login_page(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/"
+        main_page = MainPage(browser, link)
+        main_page.open()
+        main_page.go_to_loging_page()
 
-def test_guest_should_see_login_link(browser):
-    link = "http://selenium1py.pythonanywhere.com/"
-    # link = 'http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209?promo=midsummer '
-    page = MainPage(browser, link)
-    page.open()
+    def test_guest_should_see_login_link(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/"
+        main_page = MainPage(browser, link)
+        main_page.open()
 
-    page.should_be_login_link()
+        main_page.should_be_login_link()
 
-def test_url_location(browser):
+
+def test_login_register_form(browser):
     link = "http://selenium1py.pythonanywhere.com/"
     page = MainPage(browser, link)
     page.open()
@@ -36,5 +40,3 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
 
     basket.open_basket_page()
     basket.should_not_be_items_in_basket()
-
-
